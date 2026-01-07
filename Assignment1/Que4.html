@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON.stringify Example</title>
+</head>
+<body>
+
+<h2>Store User Details in localStorage</h2>
+<button onclick="storeUser()">Save User</button>
+
+<script>
+function storeUser() {
+  // JavaScript object
+  const user = { username: "admin", role: "manager" };
+
+  // Convert object to JSON string
+  const jsonString = JSON.stringify(user);
+
+  // Store in localStorage
+  localStorage.setItem("userDetails", jsonString);
+
+  alert("User details saved: " + jsonString);
+  console.log(jsonString);
+}
+</script>
+
+</body>
+</html>

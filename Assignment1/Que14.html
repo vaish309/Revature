@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic List Item</title>
+</head>
+<body>
+    <h2>Quetion::
+        <br> DOM Manipulation – Dynamic UI
+
+You click a button and dynamically add a new list item to ul Which DOM methods will you use?
+     </h2>
+     <h2>
+        DOM methods used: <br> createElement, textContent, appendChild, getElementById, addEventListener
+     </h2>
+  <ul id="myList">
+    <li>Item 1</li>
+  </ul>
+  <button id="addBtn">Add Item</button>
+
+  <script>
+    const button = document.getElementById("addBtn");
+    const ul = document.getElementById("myList");
+
+    button.addEventListener("click", () => {
+      const li = document.createElement("li");
+      li.textContent = "New Item";             
+      ul.appendChild(li);                   
+    });
+  </script>
+</body>
+</html>

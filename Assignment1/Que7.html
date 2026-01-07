@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Array filter – Available Products</title>
+</head>
+<body>
+
+
+<h2>From a product list, show only available products using filter(). Each product has an inStock property.</h2>
+
+<button onclick="showAvailable()">Show Available Products</button>
+
+<script>
+function showAvailable() {
+  // Product list
+  const products = [
+    { name: "Laptop", inStock: true },
+    { name: "Mouse", inStock: false },
+    { name: "Keyboard", inStock: true },
+    { name: "Monitor", inStock: false },
+    { name: "USB Cable", inStock: true }
+  ];
+
+  // Use filter() to get only products in stock
+  const availableProducts = products.filter(product => product.inStock);
+
+  // Display in console and alert
+  console.log("Available Products:", availableProducts);
+  alert("Available Products: " + availableProducts.map(p => p.name).join(", "));
+}
+</script>
+
+</body>
+</html>

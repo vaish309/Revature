@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON</title>
+</head>
+<body>
+<h3>
+JSON.parse() <br>
+
+You receive this API response as a string: <br>
+
+'{"id":101,"name":"Laptop","price":50000}'
+
+</h3>
+<script>
+const response = '{"id":101,"name":"Laptop","price":50000}';
+
+const obj = JSON.parse(response);
+
+console.log(obj.name); 
+
+</script>
+
+</body>
+</html>

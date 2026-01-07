@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Quetion::
+        <br>Event Listeners – Form Validation
+
+A form should display an error message when submitted without input.
+ Explain how addEventListener() helps.
+    </h2>
+    <h3>Explaination:
+        <br>You attach it to the form’s submit event.
+
+When the user submits the form, the attached function checks the input.
+
+If the input is empty, it can show an error message and prevent the form from submitting.
+    </h3>
+    <form id="myForm">
+  <input type="text" id="name" placeholder="Enter name">
+  <button type="submit">Submit</button>
+  <p id="errorMsg" style="color:rgb(197, 39, 39)"></p>
+</form>
+
+<script>
+const form = document.getElementById("myForm");
+const nameInput = document.getElementById("name");
+const errorMsg = document.getElementById("errorMsg");
+
+form.addEventListener("submit", function(event) {
+  if (nameInput.value.trim() === "") {
+    event.preventDefault();        // stop form submission
+    errorMsg.textContent = "Name is required!";
+  } else {
+    errorMsg.textContent = "";
+  }
+});
+</script>
+
+</body>
+</html>

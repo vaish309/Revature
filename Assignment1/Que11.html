@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Validation with Callback</title>
+</head>
+<body>
+    <h2>Question::
+        <br>Callback Function – Login Validation
+
+You validate a user and then redirect them.
+ Implement validation using callback functions.
+
+    </h2>
+  <script>
+    // Callback function
+    function loginValidation(username, password, callback) {
+      // Simple validation
+      if (username === "admin" && password === "1234") {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    }
+
+    // Function to handle redirection
+    function redirectUser(isValid) {
+      if (isValid) {
+        console.log("Login successful! Redirecting to dashboard...");
+        // window.location.href = "dashboard.html"; // Uncomment in real scenario
+      } else {
+        console.log("Invalid credentials! Try again.");
+      }
+    }
+
+    // Validate user with callback
+    loginValidation("admin", "1234", redirectUser); // success
+    loginValidation("user", "pass", redirectUser);  // failure
+  </script>
+</body>
+</html>

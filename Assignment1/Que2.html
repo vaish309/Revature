@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Callback Queue Example</title>
+</head>
+<body>
+<h1>You are loading ads after page load using setTimeout.
+ Why does the ad load after the main content even if the timeout is 0ms?
+</h1>
+<h3> 
+<h2>Explaination:</h2> 
+Even if setTimeout is set to 0ms, the ad loads after the main content
+because JavaScript first completes all synchronous code on the Call Stack.
+The setTimeout callback is handled by the browser and placed in the Callback Queue,
+not executed immediately. 
+The Event Loop only moves this callback to the Call Stack after the stack is empty, 
+which happens once the main page content has finished loading,
+so the ad always appears after the main content.
+</h3>
+
+<script>
+console.log("Main content rendering");
+
+setTimeout(() => {
+  console.log("Loading ads...");
+}, 0);
+
+console.log("Page fully loaded");
+</script>
+
+</body>
+</html>

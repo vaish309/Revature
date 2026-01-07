@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h2>Question::
+       <br> Closures – Secure Counter
+
+Create a counter function that cannot be directly modified from outside.
+</h2>
+  <meta charset="UTF-8">
+  <title>Simple Secure Counter</title>
+</head>
+<body>
+  <script>
+    function counter() {
+      let count = 0; // private
+
+      return {
+        increment: () => ++count,
+        get: () => count
+      };
+    }
+
+    const myCounter = counter();
+
+    console.log(myCounter.get());       // 0
+    console.log(myCounter.increment()); // 1
+    console.log(myCounter.increment()); // 2
+    console.log(myCounter.get());       // 2
+
+    // Cannot modify count directly
+    myCounter.count = 100;
+    console.log(myCounter.get());       // still 2
+  </script>
+</body>
+</html>

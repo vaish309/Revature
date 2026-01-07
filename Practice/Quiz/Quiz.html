@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quiz</title>
+<style>
+body{
+    margin-top: 30px;
+    background-color: cadetblue;
+}
+header{
+    font-size: 35px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+.container{
+    margin-top: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 30px;
+    margin-left: 300px;
+    margin-right: 300px;
+    background-color: aliceblue;
+}
+button{
+    margin: 10px;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>QUIZ</header>
+
+<div class="container">
+    <div id="question"></div>
+    <div id="options"></div>
+
+    <button onclick="prevQuestion()">Previous</button>
+    <button onclick="nextQuestion()">Next</button>
+    <button onclick="submitQuiz()">Submit</button>
+
+    <h2 id="result"></h2>
+</div>
+
+<script>
+const quiz = [
+  {
+    q: "What does HTML stand for?",
+    options: [
+      "Hyperlinks and Text Markup Language",
+      "Home Tool Markup Language",
+      "Hyper Text Markup Language",
+      "Hyper Transfer Markup Language"
+    ],
+    answer: 2
+  },
+  {
+    q: "HTML is used for?",
+    options: [
+      "Styling",
+      "Database",
+      "Structure of webpage",
+      "Logic"
+    ],
+    answer: 2
+  },
+  
+  {
+    q: "What does CSS stand for?",
+    options: [
+      "Colorful Style Sheets",
+      "Cascading Style Sheets",
+      "Creative Style Sheets",
+      "Computer Style Sheets"
+    ],
+    answer: 1
+  },
+  {
+    q: "Which CSS property changes text color?",
+    options: ["font-color", "text-color", "color", "background-color"],
+    answer: 2
+  },
+  {
+    q: "Which CSS property adds space inside an element?",
+    options: ["margin", "padding", "border", "spacing"],
+    answer: 1
+  },
+  {
+    q: "Which symbol is used for class selector in CSS?",
+    options: [".", "#", "*", "@"],
+    answer: 0
+  },
+  {
+    q: "Which CSS property makes text bold?",
+    options: ["font-style", "font-weight", "text-transform", "text-align"],
+    answer: 1
+  }
+];
+
+let current = 0;
+let userAnswers = [];
+
+function loadQuestion() {
+    document.getElementById("question").innerHTML =
+        `<h3>${current + 1}. ${quiz[current].q}</h3>`;
+
+    let optHtml = "";
+    quiz[current].options.forEach((opt, index) => {
+        optHtml += `
+        <label>
+          <input type="radio" name="option" value="${index}"
+          ${userAnswers[current] == index ? "checked" : ""}>
+          ${opt}
+        </label><br>`;
+    });
+
+    document.getElementById("options").innerHTML = optHtml;
+}
+
+function nextQuestion() {
+    saveAnswer();
+    if (current < quiz.length - 1) {
+        current++;
+        loadQuestion();
+    }
+}
+
+function prevQuestion() {
+    saveAnswer();
+    if (current > 0) {
+        current--;
+        loadQuestion();
+    }
+}
+
+function saveAnswer() {
+    const selected = document.querySelector('input[name="option"]:checked');
+    if (selected) {
+        userAnswers[current] = parseInt(selected.value);
+    }
+}
+
+function submitQuiz() {
+    saveAnswer();
+    let score = 0;
+    quiz.forEach((q, i) => {
+        if (userAnswers[i] === q.answer) {
+            score++;
+        }
+    });
+    document.getElementById("result").innerHTML =
+        `Your Score: ${score} / ${quiz.length}`;
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

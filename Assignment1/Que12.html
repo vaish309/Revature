@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment Processing - Callback Hell</title>
+</head>
+<body>
+    <h2>Question::
+        <br>  Callback Hell – Payment Processing
+
+A payment flow involves:
+
+Validate user
+
+Process payment
+
+Generate invoice
+ Explain why nested callbacks become difficult to manage. <br><br>
+ <h1>Explaination</h1>
+
+ Nested callbacks are hard to manage because:
+
+They create deep indentation, making code messy.
+
+Hard to read and understand the flow.
+
+Difficult to handle errors across multiple levels.
+
+Hard to maintain or add new steps
+    </h2>
+
+  <script>
+    // Step 1: Validate user
+    function validateUser(user, callback) {
+      setTimeout(() => {
+        console.log("User validated:", user);
+        callback();
+      }, 1000);
+    }
+
+    // Step 2: Process payment
+    function processPayment(amount, callback) {
+      setTimeout(() => {
+        console.log("Payment processed: $" + amount);
+        callback();
+      }, 1000);
+    }
+
+    // Step 3: Generate invoice
+    function generateInvoice(orderId, callback) {
+      setTimeout(() => {
+        console.log("Invoice generated for order:", orderId);
+        callback();
+      }, 1000);
+    }
+
+    // Nested callbacks (Callback Hell)
+    validateUser("JohnDoe", () => {
+      processPayment(500, () => {
+        generateInvoice(101, () => {
+          console.log("All steps completed successfully!");
+        });
+      });
+    });
+
+
+  </script>
+</body>
+</html>

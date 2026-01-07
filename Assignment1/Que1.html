@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Call Stack & Event Loop</title>
+</head>
+<body>
+
+<h2> Call Stack & Event Loop
+A web page has a button that logs "Start", then uses setTimeout to log "Async Task", and finally logs "End".
+ Explain the execution order using Call Stack, Callback Queue, and Event Loop.</h2>
+
+
+ <h2> Explaination</h2>
+ <h3>
+    When the button is clicked, the function starts executing on the Call Stack.
+    First, "Start" is logged because synchronous code runs immediately.
+    Then setTimeout is sent to the browser’s Web API,
+    so its callback does not run right away and is placed in the
+    Callback Queue after the timer finishes. Next, "End" is logged
+    because it is also synchronous.
+    After all synchronous code is done and the Call Stack becomes empty, 
+    the Event Loop moves the callback from the Callback Queue to the Call Stack,
+    and finally "Async Task" is logged.
+</h3>
+<button onclick="run()">Click Me</button>
+<script>
+function run() {
+  console.log("Start");
+
+  setTimeout(() => {
+    console.log("Async Task");
+  }, 0);
+
+  console.log("End");
+}
+</script>
+
+</body>
+</html>
